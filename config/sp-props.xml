@@ -1,0 +1,10 @@
+<?xml version="1.0" ?>
+<!-- 
+	
+-->
+
+<properties>
+
+	<parameter name="ServerURL" value="https://fuseki.conversence.com/analyze/" />
+</properties>
+

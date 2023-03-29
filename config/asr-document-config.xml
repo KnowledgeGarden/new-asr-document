@@ -1,0 +1,14 @@
+<?xml version="1.0" ?>
+<!-- new-asr properties
+	-->
+
+<properties>
+
+	<!-- WordGram database -->
+	<parameter name="DatabaseName" value = "doctest" />
+	<parameter name="DatabaseSchema" value = "public" />
+		
+	<!--  kafka rewinging T or F -->
+	<parameter name="ConsumerRewind" value="T" />
+</properties>
+
