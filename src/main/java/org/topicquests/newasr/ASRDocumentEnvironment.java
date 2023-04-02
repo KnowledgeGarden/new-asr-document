@@ -36,7 +36,7 @@ public class ASRDocumentEnvironment extends ASRBaseEnvironment {
 	 * @param logConfigPath
 	 */
 	public ASRDocumentEnvironment() {
-		super("asr-document-config.xml", "logger.properties", null);
+		super("asr-document-config.xml", null, "logger.properties");
 		kafkaProps = Configurator.getProperties("kafka-topics.xml");
 		documentListener = new DocumentListener(this);
 		String cTopic = (String)kafkaProps.get("DocumentConsumerTopic");
