@@ -8,6 +8,7 @@ package org.topicquests.newasr.kafka;
 import org.topicquests.backside.kafka.consumer.StringConsumer;
 import org.topicquests.backside.kafka.consumer.api.IMessageConsumerListener;
 import org.topicquests.newasr.ASRDocumentEnvironment;
+import org.topicquests.support.api.IEnvironment;
 
 
 /**
@@ -32,7 +33,7 @@ public class KafkaHandler {
 		isRewind = rw.equalsIgnoreCase("T");
 		CONSUMER_TOPIC = cTopic;
 		AGENT_GROUP = agentGroup;
-		consumer = new StringConsumer(environment, AGENT_GROUP,
+		consumer = new StringConsumer((IEnvironment)environment, AGENT_GROUP,
 					CONSUMER_TOPIC, listener, isRewind, pollSeconds);
 	}
 		

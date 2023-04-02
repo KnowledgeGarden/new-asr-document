@@ -1,5 +1,7 @@
-/**
- * 
+/*
+ * Copyright 2023 TopicQuests Foundation
+ *  This source code is available under the terms of the Affero General Public License v3.
+ *  Please see LICENSE.txt for full license terms, including the availability of proprietary exceptions.
  */
 package org.topicquests.newasr;
 
@@ -8,6 +10,7 @@ import java.util.Map;
 import org.topicquests.backside.kafka.consumer.api.IMessageConsumerListener;
 import org.topicquests.newasr.api.IAsrDocumentModel;
 import org.topicquests.newasr.api.IKafkaDispatcher;
+import org.topicquests.newasr.impl.ASRBaseEnvironment;
 import org.topicquests.newasr.impl.DocumentListener;
 import org.topicquests.newasr.kafka.KafkaHandler;
 import org.topicquests.newasr.kafka.DocumentProducer;
@@ -18,7 +21,7 @@ import org.topicquests.support.config.Configurator;
  * @author jackpark
  *
  */
-public class ASRDocumentEnvironment extends RootEnvironment {
+public class ASRDocumentEnvironment extends ASRBaseEnvironment {
 	private IAsrDocumentModel model = null;
 	private KafkaHandler documentConsumer;
 	private Map<String,Object>kafkaProps;
@@ -33,7 +36,7 @@ public class ASRDocumentEnvironment extends RootEnvironment {
 	 * @param logConfigPath
 	 */
 	public ASRDocumentEnvironment() {
-		super("asr-document-config.xml", "logger.properties");
+		super("asr-document-config.xml", "logger.properties", null);
 		kafkaProps = Configurator.getProperties("kafka-topics.xml");
 		documentListener = new DocumentListener(this);
 		String cTopic = (String)kafkaProps.get("DocumentConsumerTopic");

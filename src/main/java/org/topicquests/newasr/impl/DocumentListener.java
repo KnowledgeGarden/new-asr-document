@@ -12,9 +12,10 @@ import org.topicquests.newasr.util.JsonUtil;
 
 import com.google.gson.JsonObject;
 
-/**
- * @author jackpark
- *
+/*
+ * Copyright 2023 TopicQuests Foundation
+ *  This source code is available under the terms of the Affero General Public License v3.
+ *  Please see LICENSE.txt for full license terms, including the availability of proprietary exceptions.
  */
 public class DocumentListener implements IKafkaDispatcher, IMessageConsumerListener {
 	private ASRDocumentEnvironment environment;
