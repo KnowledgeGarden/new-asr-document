@@ -13,6 +13,7 @@ import org.topicquests.newasr.api.IKafkaDispatcher;
 import org.topicquests.newasr.impl.ASRBaseEnvironment;
 import org.topicquests.newasr.impl.DocumentListener;
 import org.topicquests.newasr.kafka.KafkaHandler;
+import org.topicquests.pg.PostgresConnectionFactory;
 import org.topicquests.support.config.Configurator;
 
 /**
@@ -25,6 +26,8 @@ public class ASRDocumentEnvironment extends ASRBaseEnvironment {
 	private Map<String,Object>kafkaProps;
 	private IKafkaDispatcher documentListener;
 	private DocumentEngine docEngine;
+	private PostgresConnectionFactory dbDriver = null;
+
 	
 
 	/**
@@ -34,6 +37,10 @@ public class ASRDocumentEnvironment extends ASRBaseEnvironment {
 	public ASRDocumentEnvironment() {
 		super("asr-document-config.xml");
 		kafkaProps = Configurator.getProperties("kafka-topics.xml");
+		String schemaName = getStringProperty("DatabaseSchema");
+		String dbName = getStringProperty("DatabaseName");
+		dbDriver = new PostgresConnectionFactory(dbName, schemaName);
+
 		documentListener = new DocumentListener(this);
 		String cTopic = (String)kafkaProps.get("DocumentConsumerTopic");
 		documentConsumer = new KafkaHandler(this, (IMessageConsumerListener)documentListener, cTopic, AGENT_GROUP);
@@ -49,6 +56,10 @@ public class ASRDocumentEnvironment extends ASRBaseEnvironment {
 	      }
 	    });
 
+	}
+
+	public PostgresConnectionFactory getDatabaseDriver() {
+		return dbDriver;
 	}
 
 	public IAsrDocumentModel getModel() {

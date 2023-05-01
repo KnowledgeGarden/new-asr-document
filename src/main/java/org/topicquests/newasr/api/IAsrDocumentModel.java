@@ -5,6 +5,8 @@
  */
 package org.topicquests.newasr.api;
 
+import org.topicquests.support.api.IResult;
+
 import com.google.gson.JsonObject;
 
 /**
@@ -14,5 +16,11 @@ import com.google.gson.JsonObject;
 public interface IAsrDocumentModel {
 
 	boolean acceptDocument(JsonObject data);
+	
+	IResult putDocument(IDocument d);
+	
+	IResult getDocument(long id);
+	
+	IResult updateDocument(IDocument d);
 
 }

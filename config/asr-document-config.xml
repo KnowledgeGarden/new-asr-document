@@ -5,7 +5,7 @@
 <properties>
 
 	<!-- WordGram database -->
-	<parameter name="DatabaseName" value = "doctest" />
+	<parameter name="DatabaseName" value = "bigjuice" />
 	<parameter name="DatabaseSchema" value = "public" />
 		
 	<!--  kafka rewinging T or F -->
