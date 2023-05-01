@@ -81,8 +81,8 @@ public class PostgresDocumentProvider implements IDocumentProvider {
 	    try { 
 	    	conn = dbDriver.getConnection();
 	    	Object [] vals = new Object[2];
-	    	vals[0] = new Long(id);
-	    	vals[1] = doc.getData().toString();
+	    	vals[0] = doc.getData().toString();
+	    	vals[1] = new Long(id);
 	    	
 	    	IResult rx = conn.executeSQL(sql, vals);
 		    if (rx.hasError())
