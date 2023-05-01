@@ -6,6 +6,7 @@
 package org.topicquests.newasr.test;
 
 import org.topicquests.newasr.ASRDocumentEnvironment;
+import org.topicquests.newasr.api.IAsrDocumentModel;
 
 /**
  * @author jackpark
@@ -13,11 +14,14 @@ import org.topicquests.newasr.ASRDocumentEnvironment;
  */
 public class TestingRoot {
 	protected ASRDocumentEnvironment environment;
+	protected IAsrDocumentModel model;
 	/**
 	 * 
 	 */
 	public TestingRoot() {
 		environment = new ASRDocumentEnvironment();
+		model = environment.getModel();
+		environment.logDebug("TR "+model);
 	}
 
 }

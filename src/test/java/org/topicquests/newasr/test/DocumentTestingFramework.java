@@ -15,8 +15,8 @@ public class DocumentTestingFramework {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		new BootTest();
-
+		//new BootTest();
+		new FirstDocumentTest();
 	}
 
 }

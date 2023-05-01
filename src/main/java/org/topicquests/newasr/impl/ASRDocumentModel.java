@@ -8,6 +8,7 @@ package org.topicquests.newasr.impl;
 import org.topicquests.newasr.ASRDocumentEnvironment;
 import org.topicquests.newasr.api.IAsrDocumentModel;
 import org.topicquests.newasr.api.IDocument;
+import org.topicquests.newasr.api.IDocumentProvider;
 import org.topicquests.support.api.IResult;
 
 import com.google.gson.JsonObject;
@@ -18,36 +19,35 @@ import com.google.gson.JsonObject;
  */
 public class ASRDocumentModel implements IAsrDocumentModel {
 	private ASRDocumentEnvironment environment;
-
+	private IDocumentProvider database;
 	/**
 	 * 
 	 */
 	public ASRDocumentModel(ASRDocumentEnvironment env) {
 		environment = env;
+		database = new PostgresDocumentProvider(environment);
 	}
 
 	@Override
 	public boolean acceptDocument(JsonObject data) {
-		// TODO Auto-generated method stub
-		return false;
+		IDocument d = new ASRDocument(data);
+		putDocument(d); //TODO we need a DocumentThread to handle all of these
+		return true; //default
 	}
 
 	@Override
 	public IResult putDocument(IDocument d) {
-		// TODO Auto-generated method stub
-		return null;
+		return database.putDocument(d);
 	}
 
 	@Override
 	public IResult getDocument(long id) {
-		// TODO Auto-generated method stub
-		return null;
+		return database.getDocument(id);
 	}
 
 	@Override
 	public IResult updateDocument(IDocument d) {
-		// TODO Auto-generated method stub
-		return null;
+		return database.updateDocument(d);
 	}
 
 }

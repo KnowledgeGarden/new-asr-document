@@ -15,6 +15,11 @@ import com.google.gson.JsonObject;
  */
 public interface IAsrDocumentModel {
 
+	/**
+	 * {@code data} comes from Kafka in tne {@link IASRDocument} format
+	 * @param data
+	 * @return
+	 */
 	boolean acceptDocument(JsonObject data);
 	
 	IResult putDocument(IDocument d);

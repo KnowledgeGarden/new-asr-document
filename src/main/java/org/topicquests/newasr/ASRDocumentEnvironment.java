@@ -11,6 +11,7 @@ import org.topicquests.backside.kafka.consumer.api.IMessageConsumerListener;
 import org.topicquests.newasr.api.IAsrDocumentModel;
 import org.topicquests.newasr.api.IKafkaDispatcher;
 import org.topicquests.newasr.impl.ASRBaseEnvironment;
+import org.topicquests.newasr.impl.ASRDocumentModel;
 import org.topicquests.newasr.impl.DocumentListener;
 import org.topicquests.newasr.kafka.KafkaHandler;
 import org.topicquests.pg.PostgresConnectionFactory;
@@ -40,11 +41,11 @@ public class ASRDocumentEnvironment extends ASRBaseEnvironment {
 		String schemaName = getStringProperty("DatabaseSchema");
 		String dbName = getStringProperty("DatabaseName");
 		dbDriver = new PostgresConnectionFactory(dbName, schemaName);
-
+		model = new ASRDocumentModel(this);
+		logDebug("MODEL "+model);
 		documentListener = new DocumentListener(this);
 		String cTopic = (String)kafkaProps.get("DocumentConsumerTopic");
 		documentConsumer = new KafkaHandler(this, (IMessageConsumerListener)documentListener, cTopic, AGENT_GROUP);
-		model = null; //TODO
 		docEngine = new DocumentEngine(this);
 		
 		// shutdown hook
